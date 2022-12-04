@@ -1,0 +1,99 @@
+#xxx {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 80%;
+  }
+  
+  #xxx td, #xxx th {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  #zzz {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 80%;
+  }
+  #xxx tr:nth-child(even){background-color: #f2f2f2;}
+  
+  #xxx tr:hover {background-color: #ddd;}
+  #zzz tr:nth-child(even){background-color: #f2f2f2;}
+  
+  #zzz tr:hover {background-color: #ddd;}
+  #xxx th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #eae4fa;
+    color: rgb(190, 189, 189);
+  }
+  #zzz th {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    text-align: center;
+    background-color: #eae4fa;
+    color: rgb(190, 189, 189);
+  }
+  #zzz {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 30%; 
+    border: 2px solid #ddd;
+  }
+
+
+  .ccc option, select{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: left;
+    background-color: #d1dce2;
+    color: white;
+    font-size: 13px;
+    font-weight: bolder;
+    border-radius: 10%;
+    border: 2px solid #ffffff;
+    font-weight: bold;
+  }
+  #limit {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    border-radius: 100%;
+    text-align: center; 
+    background-color: rgb(206, 190, 220);
+    font-weight: bold;
+  }
+
+  body {
+    background-color: #bdc5f5;
+  }
+
+  #title{
+    font-size: 70px;
+    font-family: monospace;
+    font-weight: 500;
+    color: #19191e;
+    font-weight: bolder;   
+  }
+
+  .drop-btn {
+    background-color: #6c97d7;
+    color: white;
+    padding: 12px;
+    font-size: 12px;
+    border: none;
+    cursor: pointer;
+  }
+
+  #salary-btn {
+    float: right;
+    background-color: #7e9bbe;
+    color: white;
+    font-weight: bolder;
+    padding: 5px;
+    font-size: 15px;
+    width: 100%;
+    border: 3px solid rgb(121, 121, 180);
+    cursor: pointer;
+  }
+  .contracts {
+    display: none;
+}

@@ -1,0 +1,301 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AgentController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    #xxx {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 80%;
+  }
+  
+  #xxx td, #xxx th {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  #zzz {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 80%;
+  }
+  #xxx tr:nth-child(even){background-color: #f2f2f2;}
+  
+  #xxx tr:hover {background-color: #ddd;}
+  #zzz tr:nth-child(even){background-color: #f2f2f2;}
+  
+  #zzz tr:hover {background-color: #ddd;}
+  #xxx th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #eae4fa;
+    color: rgb(190, 189, 189);
+  }
+  #zzz th {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    text-align: center;
+    background-color: #eae4fa;
+    color: rgb(190, 189, 189);
+  }
+  #zzz {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 30%; 
+    border: 2px solid #ddd;
+  }
+
+
+  .ccc option, select{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: left;
+    background-color: #d1dce2;
+    color: white;
+    font-size: 13px;
+    font-weight: bolder;
+    border-radius: 10%;
+    border: 2px solid #ffffff;
+    font-weight: bold;
+  }
+  #limit {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    border-radius: 100%;
+    text-align: center; 
+    background-color: rgb(206, 190, 220);
+    font-weight: bold;
+  }
+
+  body {
+    background-color: #bdc5f5;
+  }
+
+  #title{
+    font-size: 70px;
+    font-family: monospace;
+    font-weight: 500;
+    color: #19191e;
+    font-weight: bolder;   
+  }
+
+  .drop-btn {
+    background-color: #6c97d7;
+    color: white;
+    padding: 12px;
+    font-size: 12px;
+    border: none;
+    cursor: pointer;
+  }
+
+  #salary-btn {
+    float: right;
+    background-color: #7e9bbe;
+    color: white;
+    font-weight: bolder;
+    padding: 5px;
+    font-size: 15px;
+    width: 100%;
+    border: 3px solid rgb(121, 121, 180);
+    cursor: pointer;
+  }
+  .contracts {
+    display: none;
+}
+
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+<div ng-app="myApp"
+     ng-controller="myCtrl">
+
+    <div >
+      <h1 id="title" align="center">Companie de Asigurari</h1>
+      <input  min="1" max="20" id="limit" type="number" >
+      <div  class="ccc"><br>
+       <label for="x">Filter</label>
+       <select  id="selectedFilter" ng-click="getFilter()" >
+       <option value="All">All</option>
+       <option value="Sucursale">Agentii cu sucursalele din Chisinau</option>
+       <option value="Name">Filtreaza dupa nume</option>
+       </select> 
+      
+     <input type="text" id="constraint" style="display: none;" >
+       <button style="padding: 5px;margin: 15px;"  ng-click="limiting()"> DISPLAY</button>  <br>  
+      </div>
+
+      <div align="right">
+        <table id="zzz">
+          <tr>
+            <td>AgentID:</td>
+            <td><input min="1" type="number" id="agentID"></td>
+          </tr>
+          <tr>
+            <td>SALARIU </td>
+            <td><span id="salary"></span></td>
+          </tr>
+          <tr>
+            <td colspan="3"><button id="salary-btn" ng-click="calcSalary()">Calculate</button></td>
+          </tr>
+        </table>
+         <br><br> 
+      </div> 
+     
+       <table align="center" id="xxx">
+         <tr>
+           <th>ID</th>
+           <th>Nume</th>
+           <th>Prenume</th>
+           <th>Patronumic</th>
+           <th>Adresa</th>
+           <th>Telefon</th>
+           <th>Sucursala</th>
+           <th>Contracte</th>
+         </tr>
+         
+         
+       </table>
+     
+     
+       <br>
+       
+     </div>
+<script >var app = angular.module('myApp', []);
+
+
+app.service('square', function () {
+    this.squareFunction = function (x) {
+        return x * x;
+    }
+});
+
+
+app.controller('myCtrl', function ($scope, $http) {
+    $scope.title = 'LUCRU INDIVIDUAL';
+    $scope.limit = 0;
+    $scope.xz = [
+      {
+        id: 1
+      },
+      {
+          id: 2 
+        },
+      {
+        id: 3
+      }
+      ]
+   
+    $scope.items = [
+      {
+        id: 1,
+        Nume: 'Ursu', 
+        Prenume: 'Maria',
+        Patronumic: 'Ion',
+        Adresa: 'Chisinau, Botanica',
+        Telefon: '027209820',
+        Sucursala: ''
+      },
+      {
+          id: 2,
+          Nume: 'Astank', 
+          Prenume: 'Alexander',
+          Patronumic: 'Oleg',
+          Adresa: 'Cahul, Negrii', 
+          Telefon: '028938420',
+          Sucursala: ''
+        },
+      {
+        id: 3,
+        Nume: 'Martinskii', 
+        Prenume: 'Max',
+        Patronumic: 'Ion',
+        Adresa: 'Chisinau, Ciocana', 
+        Telefon: '012917424',
+        Sucursala: ''
+      },
+      {
+        id: 4,
+        Nume: 'Busuioc', 
+        Prenume: 'Ana',
+        Patronumic: 'Grigorii',
+        Adresa: 'Cahul, Rosu', 
+        Telefon: '094583274',
+        Sucursala: ''
+      },
+      {
+        id: 5,
+        Nume: 'Asenii', 
+        Prenume: 'Gabriela',
+        Patronumic: 'Max',
+        Adresa: 'Hancesti, Leuseni', 
+        Telefon: '019730735',
+        Sucursala: ''
+      },
+      {
+        id: 6,
+        Nume: 'Vordin',
+        Prenume: 'Nelli',
+        Patronumic: 'Alexei',
+        Adresa: 'Chisinau, Botanica', 
+        Telefon: '079270421',
+        Sucursala: ''
+      }
+      ]
+
+      $http.get("agent.php")
+      .then(function (response) {
+        console.log(response.data)
+      });
+
+      $scope.filter = '';
+    $scope.limiting = () =>{
+       var l = document.getElementById('limit').value;
+        $scope.limit =l;
+      }
+      $scope.getFilter = () => {
+        document.getElementById('constraint').style.display = 'none';
+        $scope.filter = document.getElementById('selectedFilter').value;
+      }
+      $scope.filterFunction = () =>{
+       
+        var constraint = document.getElementById('constraint').value;
+        let filteredItems;
+
+        if($scope.filter === "Name"){
+            filteredItems = $scope.items.filter( i => i.Nume === constraint);
+          document.getElementById('constraint').style.display = 'inline';
+        }
+        
+        if($scope.filter === "Sucursale")
+          filteredItems = ( $scope.items).filter( i => i.Adresa === constraint).slice(0, $scope.limit)    
+        else {
+          return $scope.items.slice(0, $scope.limit);}
+        return filteredItems;
+      }
+
+      $scope.showContracts = (id) => {
+     var e = document.getElementById(id);
+        if(e.style.display == 'none') {
+          document.getElementById(id).style.display = 'inline';
+      } else {
+        document.getElementById(id).style.display = 'none';
+      }
+      }
+
+      $scope.calcSalary = () => {
+        console.log('jel')
+        // Salariul este calculat  din plata asigurării (plata asigurării este suma asigurată, 
+        //înmulțit cu rata tarifară).Procentul depinde de tipul de asigurare cu care se încheie contractul.
+         let agentID = document.getElementById('agentID').value;
+         let salary = 100;
+         document.getElementById('salary').innerHTML =  salary + '$';
+
+      }
+});
+</script>
+
+</div>
+{% endblock %}
